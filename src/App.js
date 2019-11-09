@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import store from "./store";
+import { Provider } from "react-redux";
+import { Route } from "react-router-dom";
+import MoviesListContainer from "./components/MovieListContainer";
+import MovieDetailsContainer from "./components/MovieDetailsContainer";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+	render() {
+		return (
+			<Provider store={store}>
+				<div className="App">
+					<Route path="/" exact component={MoviesListContainer} />
+					<Route path="/movie/:id" component={MovieDetailsContainer} />
+				</div>
+			</Provider>
+		);
+	}
 }
 
 export default App;
